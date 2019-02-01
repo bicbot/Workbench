@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="SchoolsApp.Views.FilesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SchoolsApp.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="25"/>
+      <RowDefinition Height="25"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="100"/>
+      <ColumnDefinition/>
+      <ColumnDefinition Width="30"/>
+    </Grid.ColumnDefinitions>
+    <!--  Master File   -->
+    <Label Grid.Column="0" Grid.Row="0" Content="Master File: "  HorizontalAlignment="Right"  />
+    <TextBox Grid.Column="1" Grid.Row="0"  Text="{Binding MasterFilePath}" IsReadOnly="true" Background="LightGray" VerticalContentAlignment="Center"  >
+      <TextBox.Style>
+        <Style>
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding MasterFilePathExists}" Value="False">
+              <Setter Property="TextBox.BorderBrush" Value="Red"/>
+              <Setter Property="TextBox.BorderThickness" Value="1"/>
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </TextBox.Style>
+    </TextBox>
+    <Button Grid.Column="2" Grid.Row="0"  Content="..." Command="{Binding OpenMasterFile}" Margin="1"/>
+    <!--  Detail File   -->
+    <Label Grid.Column="0" Grid.Row="1" Content="Detail File: "  HorizontalAlignment="Right" />
+    <TextBox Grid.Column="1" Grid.Row="1"  Text="{Binding DetailFilePath}" IsReadOnly="true" Background="LightGray" VerticalContentAlignment="Center"  >
+      <TextBox.Style>
+        <Style>
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding DetailFilePathExists}" Value="False">
+              <Setter Property="TextBox.BorderBrush" Value="Red"/>
+              <Setter Property="TextBox.BorderThickness" Value="1"/>
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </TextBox.Style>
+    </TextBox>
+    <Button Grid.Column="2" Grid.Row="1" Content="..." Command="{Binding OpenDetailFile}" Margin="1"/>
+  </Grid>
+</UserControl>
